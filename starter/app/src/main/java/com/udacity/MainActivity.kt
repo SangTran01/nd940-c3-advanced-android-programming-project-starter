@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,11 +29,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-
         custom_button.setOnClickListener {
-            download()
+            when (radio_group.checkedRadioButtonId) {
+                -1 -> Toast.makeText(this, "Please Select something", Toast.LENGTH_SHORT).show()
+                else ->
+                    download()
+            }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(receiver)
     }
 
     private val receiver = object : BroadcastReceiver() {
@@ -56,8 +69,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val URL =
-            "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+//        private const val URL = "http://commonsware.com/misc/test.mp4"
+//        private const val URL =
+//            "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
+        private const val URL = "https://github.com/square/retrofit/archive/master.zip"
         private const val CHANNEL_ID = "channelId"
     }
 
