@@ -41,19 +41,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/glide"
-                android:text="Glide - Image Loading by Bumptech" />
+                android:text="@string/glide_name" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/loadapp"
-                android:text="LoadApp" />
+                android:text="@string/loadapp_name" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/retrofit"
-                android:text="retrofit" />
+                android:text="@string/retro_name" />
         </RadioGroup>
 
     </RelativeLayout>
