@@ -18,6 +18,8 @@ import android.R.id
 import android.app.NotificationChannel
 import android.database.Cursor
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.widget.RadioButton
 import com.udacity.util.CHANNEL_ID
 import com.udacity.util.sendNotification
@@ -26,10 +28,6 @@ import com.udacity.util.sendNotification
 class MainActivity : AppCompatActivity() {
 
     private var downloadID: Long = 0
-
-    private lateinit var notificationManager: NotificationManager
-    private lateinit var pendingIntent: PendingIntent
-    private lateinit var action: NotificationCompat.Action
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +39,14 @@ class MainActivity : AppCompatActivity() {
         createChannel(CHANNEL_ID, "Download Git Repo Channel")
 
         custom_button.setOnClickListener {
+            custom_button.updateButtonState(ButtonState.Loading)
             when (radio_group.checkedRadioButtonId) {
-                -1 -> Toast.makeText(this, "Please Select something", Toast.LENGTH_SHORT).show()
+                -1 -> {
+                    Toast.makeText(this, "Please Select File to download", Toast.LENGTH_SHORT).show()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        custom_button.updateButtonState(ButtonState.Completed)
+                    }, 2000)
+                }
                 else -> {
                     val button: RadioButton =
                         radio_group.findViewById(radio_group.checkedRadioButtonId)
@@ -62,6 +66,9 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1) ?: 0L
             sendNotification(this@MainActivity, id, SelectedProject!!)
+            Handler(Looper.getMainLooper()).postDelayed({
+                custom_button.updateButtonState(ButtonState.Completed)
+            }, 2000)
         }
     }
 

@@ -9,8 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 import android.content.Intent
-
-
+import androidx.constraintlayout.motion.widget.MotionLayout
 
 
 class DetailActivity : AppCompatActivity() {

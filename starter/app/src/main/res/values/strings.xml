@@ -10,6 +10,7 @@
 
     <string name="button_name">Click me</string>
     <string name="button_loading">We are loading </string>
+    <string name="button_download">Download </string>
     <string name="title_activity_detail">DetailActivity</string>
 
     <string name="glide_name">Glide: Image Loading Library by Bumptech</string>

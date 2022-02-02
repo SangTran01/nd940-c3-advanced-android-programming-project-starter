@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/motion_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,17 +8,17 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".DetailActivity"
     tools:showIn="@layout/activity_detail"
-
-    android:layout_margin="16dp">
+    android:layout_margin="16dp"
+    app:layoutDescription="@xml/content_detail_scene">
 
 
     <LinearLayout
+        android:id="@+id/linear_layout_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/button_ok"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,19 +29,19 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="File Name:"
-                android:textSize="20sp"
                 android:layout_weight="1"
-                android:textColor="#777777"/>
+                android:text="File Name:"
+                android:textColor="#777777"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textview_filename"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="Glide"
-                android:textSize="20sp"
                 android:layout_weight="1"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                tools:text="Glide" />
 
         </LinearLayout>
 
@@ -52,18 +53,18 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Status:"
-                android:textSize="20sp"
                 android:layout_weight="1"
-                android:textColor="#777777"/>
+                android:text="Status:"
+                android:textColor="#777777"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textview_status"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="Glide"
+                android:layout_weight="1"
                 android:textSize="20sp"
-                android:layout_weight="1"/>
+                tools:text="Glide" />
 
         </LinearLayout>
     </LinearLayout>
@@ -79,4 +80,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
